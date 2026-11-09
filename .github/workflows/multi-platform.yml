@@ -1,3 +1,4 @@
+
 name: Build Geode Mod
 
 on:
@@ -17,7 +18,7 @@ jobs:
 
         - name: macOS
           os: macos-latest
-          
+
         - name: Android32
           os: ubuntu-latest
           target: Android32
@@ -34,15 +35,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Own The Libs (Checkout)
+      - name: Checkout FFmpeg Libraries
         uses: actions/checkout@v4
         with:
-          repository: EclipseMenu/ffmpeg-libs
+          repository: T1fyOwO/FFmpeg-libs
           ref: ${{ matrix.config.name }}
-          token: ${{ secrets.FFMPEG_LIBS_TOKEN }}
           path: ffmpeg-libs
 
-      - name: Own The Libs (Extract)
+      - name: Extract FFmpeg Libraries
         run: 7z x ffmpeg-libs/lib/lib.7z -olib
 
       - name: Build the mod
